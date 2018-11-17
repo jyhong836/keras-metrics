@@ -155,7 +155,7 @@ class false_positive(layer):
 
     def __call__(self, y_true, y_pred):
         y_true, y_pred = self.cast(y_true, y_pred)
-        neg_y_true = 1 - y_true
+        neg_y_true = K.round(1 - y_true)
 
         fp = K.sum(neg_y_true * y_pred)
         current_fp = self.fp * 1
